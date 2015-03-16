@@ -29,17 +29,33 @@ var Steps = {
 
 		library.then("I should see the yadda github in the results", function(next) {
 
-			var getText = function(text) { console.log(text)};
-			
-			var WebElement = ctx.driver.findElement(By.className("_Rm"));
-			console.log(WebElement.getText().then(getText))
+			// var inText;
+			var assertText = function(text) { assert(text).contains('acuminous/yadda · GitHub') };
+			// var assertText = function(text) { assert(text).contains('fjgsdfhgashfga') };
+
+			// var WebElements = ctx.driver.findElements(By.className("_Rm"));
+			// console.log(WebElement.getText().then(getText))
 			// console.log(WebElement);
-			// WebElements.then(function(x) { x.map(function(d) { console.log(d.then(function(el) { el.getText()}))})});
+			// var list;
+			// WebElements.then(function(elArray) { 
+				// list = elArray.map(function(wel) { wel.getText().then(getText); });
+				// console.log(inText);
+				// console.log('-----');
+				// console.log(list);
+				// next();
+			// });
 			// ctx.driver.findElements(By.className("_Rm")).getText().then(function(text) {
 			// 	console.log(text);
 			// 	// assert(text).contains("https://github.com/acuminous/");
-				next();
+			// console.log('------');
+			// console.log(list);
+				// next();
 			// });
+
+			ctx.driver.findElement(By.linkText("acuminous/yadda · GitHub")).getInnerHtml().then(assertText);
+
+			next();
+
 		});
 	}
 };
